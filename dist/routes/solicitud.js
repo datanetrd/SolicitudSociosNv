@@ -12,6 +12,8 @@ var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
 var _passport = _interopRequireDefault(require("passport"));
 
+var _Email = require("../config/Email");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const router = (0, _express.Router)();
@@ -23,11 +25,18 @@ const router = (0, _express.Router)();
 //     .catch(err => console.log(err)));
 router.put('/edit/:cedula', async (req, res) => {
   const {
+    nombre
+  } = req.params; // console.log(nombre);
+
+  const {
     acept
   } = req.body;
   const {
     cedula
   } = req.params;
+  module.exports = {
+    ce: cedula
+  };
   var values = {
     estado_solicitud: acept
   };
@@ -36,6 +45,20 @@ router.put('/edit/:cedula', async (req, res) => {
       cedula
     }
   };
+  var token = req.cookies['SystemAuth'];
+
+  if (req.cookies['SystemAuth']) {
+    var admin = '';
+
+    _jsonwebtoken.default.verify(token, process.env.SECRET_OR_KEY, function (error, decoded) {
+      var user = decoded.email;
+
+      if (acept) {
+        (0, _Email.solicitudmail)(req, res, user);
+      }
+    });
+  }
+
   await _Nuevos_socios.default.update(values, selector).then(function () {
     req.flash('success_msg', 'Solicitud Aceptada Correctamente.');
     res.redirect('/buscador');
@@ -65,7 +88,7 @@ router.delete('/delete/:cedula', async (req, res) => {
 }); // Search for solicitudes
 
 router.get('/search', async (req, res) => {
-  let {
+  var {
     cedula
   } = req.query;
   var token = req.cookies['SystemAuth'];

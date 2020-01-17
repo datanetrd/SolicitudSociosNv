@@ -5,6 +5,7 @@ import nuevoSocios from '../models/Nuevos_socios';
 import DataRegister from '../models/Data_register'; 
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import {solicitudmail} from '../config/Email';
 
 // router.get('/', async (req, res) => 
 //   await nuevoSocios.findAll()
@@ -17,14 +18,32 @@ import passport from 'passport';
 
     
   router.put('/edit/:cedula', async (req,res) =>{
+    const {nombre} = req.params;
+    // console.log(nombre);
   const {acept} = req.body;
   const {cedula} = req.params;
+  module.exports = {ce: cedula};
   var values = { estado_solicitud: acept };
   var selector = { 
     where: {cedula}  
   };
+
+  var token = req.cookies['SystemAuth'];
+  
+  if (req.cookies['SystemAuth']) {
+      var admin = ''
+      jwt.verify(token,process.env.SECRET_OR_KEY, function (error,decoded){
+        var user = decoded.email;
+        if (acept) {
+          solicitudmail(req,res,user);
+        }
+      })
+  }
+
+  
   await nuevoSocios.update(values, selector)
   .then(function() {
+    
     req.flash('success_msg', 'Solicitud Aceptada Correctamente.');
     res.redirect('/buscador');
   })
@@ -52,7 +71,7 @@ import passport from 'passport';
 
 // Search for solicitudes
 router.get('/search',async (req, res) => {
-  let { cedula } = req.query;
+  var { cedula } = req.query;
   var token = req.cookies['SystemAuth'];
   if (req.cookies['SystemAuth']) {
       var admin = ''
@@ -80,3 +99,5 @@ module.exports  = router;
   //     next();
   // });
   // });
+
+  

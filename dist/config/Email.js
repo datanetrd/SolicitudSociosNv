@@ -1,5 +1,10 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.solicitudmail = solicitudmail;
+
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
 var _path = _interopRequireDefault(require("path"));
@@ -10,9 +15,13 @@ var _nodemailer = _interopRequireDefault(require("nodemailer"));
 
 var _Oficinas = _interopRequireDefault(require("../models/Oficinas"));
 
+var _solicitud = require("../routes/solicitud");
+
 var _config = require("./config");
 
 var _regeneratorRuntime = require("regenerator-runtime");
+
+var _Nuevos_socios = _interopRequireDefault(require("../models/Nuevos_socios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,7 +52,7 @@ const SolicitudSucursal = async function (req, res) {
     attachments: [{
       filename: `${cedula}.pdf`,
       path: _path.default.join(__dirname, `../../${nombre}.pdf`),
-      contentType: 'application/pdf'
+      contentType: "application/pdf"
     }]
   }; //Envio del mail
 
@@ -52,14 +61,61 @@ const SolicitudSucursal = async function (req, res) {
     if (error) {
       console.log(error);
     } else {
-      console.log('Email sent: ' + info.response);
+      console.log("Email sent: " + info.response);
     }
 
     const filePath = _path.default.join(__dirname, `../../${nombre}.pdf`);
 
     _fsExtra.default.unlink(filePath);
   });
-};
+}; // Function para Mail de confirmación de solicitud
+
+
+async function solicitudmail(req, res, user) {
+  const {
+    cedula
+  } = req.params;
+  console.log(cedula);
+  var data = await _Nuevos_socios.default.findAll({
+    where: {
+      cedula: `${cedula}`
+    },
+    raw: true
+  }); //  var datta =  JSON.stringify(data);
+
+  for (var i = 0; i < data.length; i++) {
+    var datta = data[i]; // console.log(datta)
+  }
+
+  const DestinoSucursal1 = await _Oficinas.default.findOne({
+    where: {
+      oficina: datta.sucursal
+    }
+  });
+  const mailOptions2 = {
+    from: process.env.MAIL_USER,
+    //Destino del correo
+    to: `${DestinoSucursal1.Email_Oficina}`,
+    subject: `Nueva Solicitud Aceptada. Sucursal: ${datta.sucursal}`,
+    text: `La solicitud para ${datta.nombre} ha sido aceptada por el usuario ${user}` // attachments: [{
+    //     filename: `${cedula}.pdf`,
+    //     path: path.join(__dirname, `../../${nombre}.pdf`),
+    //     contentType: 'application/pdf'
+    // }],
+
+  }; //Envio del mail
+
+  transporter.sendMail(mailOptions2, function (error, info) {
+    //validar que haya habido un error
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    } // const filePath = path.join(__dirname, `../../${datta.nombre}.pdf`);
+    // fs.unlink(filePath);
+
+  });
+}
 
 module.exports = {
   SolicitudSucursal

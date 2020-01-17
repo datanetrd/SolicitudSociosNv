@@ -44,6 +44,9 @@ const nuevoSocios = _dbconfig.sequelize.define('nuevos_socios', {
   },
   estado_solicitud: {
     type: _sequelize.default.TEXT
+  },
+  sucursal: {
+    type: _sequelize.default.TEXT
   }
 }, {
   timestamps: false,

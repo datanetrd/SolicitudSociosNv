@@ -32,7 +32,8 @@ const save = async function(req,res) {
   
           nombre,
           apellido,
-          cedula
+          cedula,
+          sucursal
         });
   
         let data = await DataRegister.create({

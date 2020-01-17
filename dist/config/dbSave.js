@@ -39,7 +39,8 @@ const save = async function (req, res) {
     let dataName = await _Nuevos_socios.default.create({
       nombre,
       apellido,
-      cedula
+      cedula,
+      sucursal
     });
     let data = await _Data_register.default.create({
       nombre,

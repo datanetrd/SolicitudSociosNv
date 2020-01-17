@@ -27,6 +27,9 @@ const nuevoSocios = sequelize.define('nuevos_socios', {
                    },
     estado_solicitud: {
         type: Sequelize.TEXT
+    },
+    sucursal: {
+        type: Sequelize.TEXT
     }
 },  {
     timestamps: false,
