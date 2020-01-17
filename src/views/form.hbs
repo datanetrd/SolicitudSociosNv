@@ -5,7 +5,7 @@
 <div class=" col-auto col-md-auto col-lg-12">
   <div class="card ">
     <div class="card-header card-header-rose card-header-icon">
-      <div class="card-icon">
+      <div class="card-icon1">
         <i class="material-icons">contacts</i>
       </div>
       <h4 class="card-title">Solicitud Socio</h4>
@@ -16,7 +16,7 @@
           <div class="col-6 col-lg-4 col-md-4">
             <label class="col-sm-0 col-form-label">Nombres:</label>
             <div class="form-group">
-              <input class="form-control" type="text" name="nombre" id="nombre" value="{{nombre}}" required="">
+              <input class="form-control" type="text" name="nombre" id="nombre" minlength="3" value="{{nombre}}" required="">
                <div class="invalid-feedback">
         Ingresa un Nombre
       </div>
@@ -25,7 +25,7 @@
           <div class="col-6 col-lg-4 col-md-4">
             <label class="col-sm-0 col-form-label">Apellidos:</label>
             <div class="form-group bmd-form-group">
-              <input type="text" name="apellido" id="apellido" class="form-control" value="{{apellido}}" placeholder="" required="">
+              <input type="text" name="apellido" id="apellido" class="form-control" minlength="3" value="{{apellido}}" placeholder="" required="">
                <div class="invalid-feedback">
         Ingresa un apellido
       </div>
@@ -64,7 +64,7 @@
           <div class="col-12 col-lg-8 col-sm-8 col-md-8">
             <label>Dirección Residencial:</label>
             <div class="form-group bmd-form-group">
-              <input type="text" name="direccionresidencial" class="form-control" value="{{direccionresidencial}}" required=""
+              <input type="text" name="direccionresidencial" class="form-control" minlength="3" value="{{direccionresidencial}}" required=""
                 placeholder="">
                   <div class="invalid-feedback">
         Ingresa una Dirección
@@ -76,7 +76,7 @@
           <div class="col-6 col-lg-4 col-sm-4 col-md-4">
             <label class="col-sm-0 col-form-label">Provincia:</label>
             <div class="form-group bmd-form-group">
-              <input type="text" name="provincia" class="form-control" value="{{provincia}}" required=""
+              <input type="text" name="provincia" class="form-control" minlength="3" value="{{provincia}}" required=""
                 placeholder="">
                   <div class="invalid-feedback">
         Ingresa una provincia
@@ -106,7 +106,7 @@
           <div class="col-6 col-lg-3 col-md-4">
             <label class="col-sm-0 col-form-label">Oficina de Trabajo:</label>
             <div class="form-group bmd-form-group">
-              <input type="text" name="oficinatrabajo" class="form-control" value="{{oficinatrabajo}}" placeholder="" required="">
+              <input type="text" name="oficinatrabajo" class="form-control" minlength="3" value="{{oficinatrabajo}}" placeholder="" required="">
                <div class="invalid-feedback">
         Ingresa una Dirección
       </div>
@@ -117,7 +117,7 @@
           <div class="col-6 col-lg-3 col-md-4">
             <label class="col-sm-0 col-form-label">Dirección Trabajo:</label>
             <div class="form-group">
-              <input class="form-control" type="text" name="direcciontrabajo" value="{{direcciontrabajo}}" required="">
+              <input class="form-control" type="text" name="direcciontrabajo" minlength="3"  value="{{direcciontrabajo}}" required="">
                 <div class="invalid-feedback">
         Ingresa la Dirección de Trabajo
       </div>
@@ -135,7 +135,7 @@
           <div class="col-12 col-lg-3 col-md-4">
             <label class="col-sm-0 col-form-label">Fecha de Ingreso Empresa:</label>
             <div class="form-group bmd-form-group">
-              <input type="text" name="fechaingresoempresa" class="form-control" value="{{fechaingresoempresa}}" placeholder="" required="">
+              <input type="text" name="fechaingresoempresa" class="form-control" minlength="3" value="{{fechaingresoempresa}}" placeholder="" required="">
                <div class="invalid-feedback">
         Ingresa una Fecha
       </div>
@@ -154,7 +154,7 @@
              <div class="col-4 col-md-3 col-lg-3 col-sm-3">
               <label class="col-sm-0 col-form-label">Puesto:</label>
               <div class="form-group bmd-form-group">
-                <input type="text" name="puesto" class="form-control" value="{{puesto}}"  placeholder="" required="">
+                <input type="text" name="puesto" class="form-control" minlength="3" value="{{puesto}}"  placeholder="" required="">
 
                   <div class="invalid-feedback">
         Ingresa un Puesto de Trabajo
@@ -176,7 +176,7 @@
             <div class="col-12 col-md-8 col-lg-8  col-sm-8">
               <label class="col-sm-0 col-form-label">Correo Electrónico:</label>
               <div class="form-group bmd-form-group">
-                 <input class="form-control" type="email" name="email" value="{{email}}"  placeholder="Opcional" >
+                 <input class="form-control" type="email" name="email" minlength="5" value="{{email}}"  placeholder="Opcional" >
                    {{!-- <div class="invalid-feedback">
         Ingresa un Correo Electrónico
       </div> --}}
@@ -227,7 +227,7 @@
           <div class="col-6 col-lg-3 col-md-4">
             <label class="col-sm-0 col-form-label">Nombres:</label>
             <div class="form-group">
-              <input class="form-control" type="text" name="nombre2" value="{{nombre2}}" required="">
+              <input class="form-control" type="text" name="nombre2" minlength="3" value="{{nombre2}}" required="">
               <div class="invalid-feedback">
         Ingrese un Nombre
       </div>
@@ -236,7 +236,7 @@
           <div class="col-6 col-lg-3 col-md-4">
             <label class="col-sm-0 col-form-label">Apellidos:</label>
             <div class="form-group">
-              <input class="form-control" type="text" name="apellido2" value="{{apellido2}}" required="">
+              <input class="form-control" type="text" name="apellido2" minlength="3" value="{{apellido2}}" required="">
               <div class="invalid-feedback">
         Ingrese un Apellido
       </div>
@@ -277,7 +277,7 @@
             <div id="g-recaptcha-error"></div>
             {{!-- </div> --}}
         <br><br>
-      <button type="button" class="btn btn-rose btn-round col text-center" data-toggle="modal" data-target="#myModal10">
+      <button type="button" class="btn btn-green btn-round col text-center" data-toggle="modal" data-target="#myModal10">
                         Enviar Solicitud
                       </button>
                        <!-- small modal -->

@@ -27,7 +27,7 @@ const SolicitudSucursal = async function (req, res) {
     });
     
     
-    //Opcionoes envio email
+    //Opciones envio email
         const mailOptions = {
             from: process.env.MAIL_USER,
             //Destino del correo

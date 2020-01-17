@@ -18,10 +18,10 @@ import passport from 'passport';
     
   router.put('/edit/:cedula', async (req,res) =>{
   const {acept} = req.body;
-  const {id} = req.params;
+  const {cedula} = req.params;
   var values = { estado_solicitud: acept };
   var selector = { 
-    where: {id}  
+    where: {cedula}  
   };
   await nuevoSocios.update(values, selector)
   .then(function() {
