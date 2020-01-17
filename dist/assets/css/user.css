@@ -392,6 +392,14 @@ table td{
   .register-pagee .page-header {
 	background-position: top center;
   }
+
+  .regist {
+	  color: rgb(25, 75, 240);
+  }
+
+  .regist:hover {
+	  color: rgb(46, 122, 221);
+  }
   
   @media all and (max-width: 991px) {
 	.page-header.pricing-page,
