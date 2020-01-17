@@ -32,7 +32,7 @@ const SolicitudSucursal = async function (req, res) {
     where: {
       oficina: sucursal
     }
-  }); //Opcionoes envio email
+  }); //Opciones envio email
 
   const mailOptions = {
     from: process.env.MAIL_USER,

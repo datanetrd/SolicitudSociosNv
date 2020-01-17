@@ -26,14 +26,14 @@ router.put('/edit/:cedula', async (req, res) => {
     acept
   } = req.body;
   const {
-    id
+    cedula
   } = req.params;
   var values = {
     estado_solicitud: acept
   };
   var selector = {
     where: {
-      id
+      cedula
     }
   };
   await _Nuevos_socios.default.update(values, selector).then(function () {
