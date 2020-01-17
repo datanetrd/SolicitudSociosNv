@@ -97,7 +97,7 @@ async function solicitudmail(req, res, user) {
     //Destino del correo
     to: `${DestinoSucursal1.Email_Oficina}`,
     subject: `Nueva Solicitud Aceptada. Sucursal: ${datta.sucursal}`,
-    text: `La solicitud para ${datta.nombre} ha sido aceptada por el usuario ${user}` // attachments: [{
+    text: `La solicitud para ${datta.nombre}(${datta.cedula}) ha sido aceptada por el usuario ${user}` // attachments: [{
     //     filename: `${cedula}.pdf`,
     //     path: path.join(__dirname, `../../${nombre}.pdf`),
     //     contentType: 'application/pdf'
