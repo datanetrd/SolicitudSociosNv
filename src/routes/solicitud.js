@@ -70,8 +70,8 @@ import {solicitudmail} from '../config/Email';
 
 
 // Search for solicitudes
-router.get('/search',async (req, res) => {
-  var { cedula } = req.query;
+router.post('/search',async (req, res) => {
+  var { cedula } = req.body;
   var token = req.cookies['SystemAuth'];
   if (req.cookies['SystemAuth']) {
       var admin = ''

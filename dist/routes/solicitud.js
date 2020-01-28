@@ -87,10 +87,10 @@ router.delete('/delete/:cedula', async (req, res) => {
   });
 }); // Search for solicitudes
 
-router.get('/search', async (req, res) => {
+router.post('/search', async (req, res) => {
   var {
     cedula
-  } = req.query;
+  } = req.body;
   var token = req.cookies['SystemAuth'];
 
   if (req.cookies['SystemAuth']) {
